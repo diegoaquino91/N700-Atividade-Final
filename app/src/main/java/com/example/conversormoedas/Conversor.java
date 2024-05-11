@@ -35,13 +35,13 @@ public class Length_Conversion {
     public String getBeginningUnitType() {
         return beginningUnitType;
     }
-    public void setBeginningUnitType(double beginningUnitType) {
+    public void setBeginningUnitType(String beginningUnitType) {
         this.beginningUnitType = beginningUnitType;
     }
     public String getEndingUnitType() {
         return endingUnitType;
     }
-    public void setEndingUnitType(double endingUnitType) {
+    public void setEndingUnitType(String endingUnitType) {
         this.endingUnitType = endingUnitType;
     }
     public double getUnitTypeConstant(String unitType){

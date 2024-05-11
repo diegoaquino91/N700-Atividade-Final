@@ -2,6 +2,7 @@ package com.example.conversormoedas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,6 +10,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Spinner spinnerEntrada;
+    private Spinner spinnerSaida;
+    private EditText qtyEditText;
+    private TextView resultOutputTextView;
+    private Length_Conversion lengthConverter;
+
 
     Spinner convertFromUnitTypeSpinner;
     Spinner converToUnitTypeSpinner;
@@ -18,39 +26,43 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //associação das variaveis com os elementos visuais da tela
-        convertFromUnitTypeSpinner = findViewById(R.id.spinnerEntrada);
-        converToUnitTypeSpinner = findViewById((R.id.spinnerSaida));
+        spinnerEntrada = findViewById(R.id.spinnerEntrada);
+        spinnerSaida = findViewById(R.id.spinnerSaida);
+        qtyEditText = findViewById(R.id.qtyEditText);
+        resultOutputTextView = findViewById(R.id.resultOutputTextView);
+
+        // Inicialização do conversor
+        lengthConverter = new Length_Conversion();
     }
 
-    public void onClickConverterButtonEvent(View view){
+    public void onClickConverterButtonEvent(View view) {
+        // Obtenção dos dados de entrada
+        String inputText = qtyEditText.getText().toString();
 
-        //declarar variáveis
-        double beginningQty;
-        double endingQty;
-        String beginningUnitType;
-        String endingUnitType;
+        // Verificar se o campo de entrada não está vazio
+        if (!inputText.isEmpty()) {
+            try {
+                double beginningQty = Double.parseDouble(inputText);
+                String beginningUnitType = spinnerEntrada.getSelectedItem().toString();
+                String endingUnitType = spinnerSaida.getSelectedItem().toString();
 
-        //declarar componentes
-        EditText qtyEditText = (EditText)findViewById(R.id.qtyEditText);
-        TextView resultOutputTextView = (TextView)findViewById(R.id.resultOutputTextView);
+                // Configuração dos dados no conversor
+                lengthConverter.setBeginningQty(beginningQty);
+                lengthConverter.setBeginningUnitType(beginningUnitType);
+                lengthConverter.setEndingUnitType(endingUnitType);
 
-        Length_Conversion lengthConverter = new Length_Conversion();
+                // Cálculo da conversão
+                double endingQty = lengthConverter.calculateEndingQty();
 
-        //obter dados de entrada
-        beginningQty = Double.parseDouble(qtyEditText.getText().toString());
-        beginningUnitType = convertFromUnitTypeSpinner.getSelectedItem().toString();
-        endingUnitType = converToUnitTypeSpinner.getSelectedItem().toString();
-
-        //inserir dados em objetos
-        lengthConverter.setBeginningQty(beginningQty);
-        lengthConverter.setBeginningUnitType(beginningUnitType);
-        lengthConverter.setEndingUnitType(endingUnitType);
-
-        //calcular a conversão
-        endingQty = lengthConverter.calculateEndingQty();
-        lengthConverter.setEndingQty(endingQty);
-
-        //retornar o resultado para o console
-        resultOutputTextView.setText(lengthConverter.toString());
+                // Exibição do resultado da conversão
+                resultOutputTextView.setText(String.valueOf(endingQty));
+            } catch (NumberFormatException e) {
+                // Se ocorrer um erro ao converter o valor de entrada para double
+                resultOutputTextView.setText("Valor de entrada inválido");
+            }
+        } else {
+            // Se o campo de entrada estiver vazio
+            resultOutputTextView.setText("Por favor, insira um valor para converter");
+        }
     }
 }
