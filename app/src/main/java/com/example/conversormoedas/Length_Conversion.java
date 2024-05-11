@@ -1,5 +1,7 @@
 package com.example.conversormoedas;
 
+import java.util.Objects;
+
 public class Length_Conversion {
 
     //variáveis para comparação de unidades
@@ -45,10 +47,10 @@ public class Length_Conversion {
         this.endingUnitType = endingUnitType;
     }
     public double getUnitTypeConstant(String unitType){
-        if(unitType == "meters"){return meters;}
-        if(unitType == "centimeters"){return centimeters;}
-        if(unitType == "kilometers"){return kilometers;}
-        if(unitType == "miles"){return miles;}
+        if(Objects.equals(unitType, "m")){return meters;}
+        if(Objects.equals(unitType, "cm")){return centimeters;}
+        if(Objects.equals(unitType, "km")){return kilometers;}
+        if(Objects.equals(unitType, "mi")){return miles;}
         return 0;
     }
 
