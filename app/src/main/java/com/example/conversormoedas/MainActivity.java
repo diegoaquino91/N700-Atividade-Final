@@ -5,35 +5,52 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    double valorDolar = 5.30;
-    double valorEuro = 5.77;
+    Spinner convertFromUnitTypeSpinner;
+    Spinner converToUnitTypeSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    public void ConverterValores(View view) {
-        EditText edtValorEntrada;
-        TextView txtValorSaidaDolar, txtValorSaidaEuro;
 
         //associação das variaveis com os elementos visuais da tela
-        edtValorEntrada = findViewById(R.id.edtValorReal);
-        txtValorSaidaDolar = findViewById(R.id.txtValorDolar);
-        txtValorSaidaEuro = findViewById(R.id.txtValorEuro);
+        convertFromUnitTypeSpinner = findViewById(R.id.spinnerEntrada);
+        converToUnitTypeSpinner = findViewById((R.id.spinnerSaida));
+    }
 
-        double valorEmReais = Double.parseDouble(edtValorEntrada.getText().toString());
+    public void onClickConverterButtonEvent(View view){
 
-        //converter dolar
-        double auxiliar = valorEmReais / valorDolar;
-        txtValorSaidaDolar.setText("U$ " + String.format("%.2f", auxiliar));
+        //declarar variáveis
+        double beginningQty;
+        double endingQty;
+        String beginningUnitType;
+        String endingUnitType;
 
-        //converter euro
-        auxiliar = valorEmReais / valorEuro;
-        txtValorSaidaEuro.setText("E$ " + String.format("%.2f", auxiliar));
+        //declarar componentes
+        EditText qtyEditText = (EditText)findViewById(R.id.qtyEditText);
+        TextView resultOutputTextView = (TextView)findViewById(R.id.resultOutputTextView);
+
+        Length_Conversion lengthConverter = new Length_Conversion();
+
+        //obter dados de entrada
+        beginningQty = Double.parseDouble(qtyEditText.getText().toString());
+        beginningUnitType = convertFromUnitTypeSpinner.getSelectedItem().toString();
+        endingUnitType = converToUnitTypeSpinner.getSelectedItem().toString();
+
+        //inserir dados em objetos
+        lengthConverter.setBeginningQty(beginningQty);
+        lengthConverter.setBeginningUnitType(beginningUnitType);
+        lengthConverter.setEndingUnitType(endingUnitType);
+
+        //calcular a conversão
+        endingQty = lengthConverter.calculateEndingQty();
+        lengthConverter.setEndingQty(endingQty);
+
+        //retornar o resultado para o console
+        resultOutputTextView.setText(lengthConverter.toString());
     }
 }
