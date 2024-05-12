@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Spinner
-        android:id="@+id/spinnerEntrada"
+        android:id="@+id/spinnerIn"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Spinner
-        android:id="@+id/spinnerSaida"
+        android:id="@+id/spinnerOut"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"

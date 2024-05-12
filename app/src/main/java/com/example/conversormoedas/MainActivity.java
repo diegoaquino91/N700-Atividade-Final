@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Spinner spinnerEntrada;
-    private Spinner spinnerSaida;
+    private Spinner spinnerIn;
+    private Spinner spinnerOut;
     private EditText qtyEditText;
     private TextView resultOutputTextView;
     private Length_Conversion lengthConverter;
@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //associação das variaveis com os elementos visuais da tela
-        spinnerEntrada = findViewById(R.id.spinnerEntrada);
-        spinnerSaida = findViewById(R.id.spinnerSaida);
+        spinnerIn = findViewById(R.id.spinnerIn);
+        spinnerOut = findViewById(R.id.spinnerOut);
         qtyEditText = findViewById(R.id.qtyEditText);
         resultOutputTextView = findViewById(R.id.resultOutputTextView);
 
@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         if (!inputText.isEmpty()) {
             try {
                 double beginningQty = Double.parseDouble(inputText);
-                String beginningUnitType = spinnerEntrada.getSelectedItem().toString();
-                String endingUnitType = spinnerSaida.getSelectedItem().toString();
+                String beginningUnitType = spinnerIn.getSelectedItem().toString();
+                String endingUnitType = spinnerOut.getSelectedItem().toString();
 
                 // Configuração dos dados no conversor
                 lengthConverter.setBeginningQty(beginningQty);
