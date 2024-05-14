@@ -65,4 +65,12 @@ public class MainActivity extends AppCompatActivity {
             resultOutputTextView.setText("Por favor, insira um valor para converter");
         }
     }
+    // Botão para encerrar aplicação
+    public void onClickClose(View view) {
+        finish();
+    }
+
+    public void onClickClearFields (View view) {
+        Actions.ClearFields(resultOutputTextView, qtyEditText);
+    }
 }
