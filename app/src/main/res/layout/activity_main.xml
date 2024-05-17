@@ -45,9 +45,9 @@
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:contentDescription="Campo de entrada para valor a ser convertido"
         android:ems="10"
         android:inputType="number|numberDecimal"
-        android:contentDescription="Campo de entrada para valor a ser convertido"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -75,25 +75,22 @@
         android:id="@+id/buttonExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="268dp"
-        android:text="Sair"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
         android:onClick="onClickClose"
-        app:layout_constraintEnd_toStartOf="@+id/buttonClear"
-        app:layout_constraintHorizontal_bias="0.596"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultOutputTextView" />
+        android:text="Sair"
+        app:layout_constraintEnd_toStartOf="@+id/btnConverter"
+        app:layout_constraintTop_toBottomOf="@+id/qtyEditText" />
 
     <Button
         android:id="@+id/buttonClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="268dp"
-        android:layout_marginEnd="80dp"
-        android:text="Limpar"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
         android:onClick="onClickClearFields"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultOutputTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        android:text="Limpar"
+        app:layout_constraintStart_toEndOf="@+id/btnConverter"
+        app:layout_constraintTop_toBottomOf="@+id/qtyEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
